@@ -22,7 +22,7 @@ jobs:
           echo "QtMsBuild=${{ env.QT_ROOT_DIR }}\\bin" >> $GITHUB_ENV
 
       - shell: bash
-        run: find /c/program* -name 'VSIXInstaller.exe'
+        run: find /c/Program* -name 'VSIXInstaller.exe'
           
       - run: |
           function Invoke-VSIXInstaller {
