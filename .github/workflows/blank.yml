@@ -27,9 +27,8 @@ jobs:
           
             $path = vswhere -latest -prerelease -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe'
 
-            echo "VSIXInstaller = $path"
-          
             if (Test-Path $path) {
+              echo "Fire: $path $args"
               & $path $args
             }
           }
