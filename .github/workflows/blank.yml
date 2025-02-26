@@ -7,20 +7,16 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v2
-      with:
-        version: '5.15.2'
-        host: 'windows'
-        target: 'desktop'
-        arch: 'win64_msvc2019_64'
-        dir: '${{ github.workspace }}/example/'
-        install-deps: 'true'
-        modules: 'qtcore qtwidgets qtgui'
-        cached: 'false'
-        setup-python: 'true'
-        tools-only: 'false'
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.8.2"
+          host: "windows"
+          target: "desktop"
+          arch: "win64_msvc2022_64"
+          setup-python: "false"
+          cache: "true"
 
-    - shell: cmd
-      run: set
+      - shell: cmd
+        run: set
       
