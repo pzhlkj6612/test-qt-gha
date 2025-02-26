@@ -26,6 +26,8 @@ jobs:
             $ErrorActionPreference = 'Stop'
           
             $path = vswhere -latest -prerelease -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe'
+
+            echo "VSIXInstaller = $path"
           
             if (Test-Path $path) {
               & $path $args
@@ -34,11 +36,13 @@ jobs:
 
           curl.exe -o 'qtvstools.vsix' -L 'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/TheQtCompany/vsextensions/QtVisualStudioTools2022/3.3.1.1/vspackage'
           
-          Invoke-VSIXInstaller /q qtvstools.vsix
+          Invoke-VSIXInstaller /q /logFile:qtvstools.log qtvstools.vsix
 
-      - shell: bash
-        run: echo "QtMsBuild = $QtMsBuild"
+          Get-Content ${env:TEMP}\qtvstools.log
 
-      - shell: bash
-        run: find /c \( -name '*.targets' -o -name '*.props' \)
+#      - shell: bash
+#        run: echo "QtMsBuild = $QtMsBuild"
+
+#      - shell: bash
+#        run: find /c \( -name '*.targets' -o -name '*.props' \)
       
