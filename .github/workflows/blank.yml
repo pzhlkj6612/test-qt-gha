@@ -16,7 +16,14 @@ jobs:
           arch: "win64_msvc2022_64"
           setup-python: "false"
           cache: "true"
-
+          
+      - name: Set environment variables
+        run: |
+          echo "QtMsBuild=${{ env.QT_ROOT_DIR }}\\bin" >> $GITHUB_ENV
+          
       - shell: cmd
         run: set
+
+      - shell: bash
+        run: ls -la $QtMsBuild/
       
