@@ -21,12 +21,24 @@ jobs:
         run: |
           echo "QtMsBuild=${{ env.QT_ROOT_DIR }}\\bin" >> $GITHUB_ENV
           
-      - shell: cmd
-        run: set
+      - run: |
+          function Invoke-VSIXInstaller {
+            $ErrorActionPreference = 'Stop'
+          
+            $path = vswhere -latest -prerelease -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe'
+          
+            if (Test-Path $path) {
+              & $path $args
+            }
+          }
+
+          curl.exe -o 'qtvstools.vsix' -L 'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/TheQtCompany/vsextensions/QtVisualStudioTools2022/3.3.1.1/vspackage'
+          
+          Invoke-VSIXInstaller /q qtvstools.vsix
 
       - shell: bash
-        run: ls -la $QtMsBuild/
+        run: echo "QtMsBuild = $QtMsBuild"
 
       - shell: bash
-        run: find $QT_ROOT_DIR \( -name '*.targets' -o -name '*.props' \)
+        run: find / \( -name '*.targets' -o -name '*.props' \)
       
