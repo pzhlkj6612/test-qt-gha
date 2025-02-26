@@ -21,9 +21,6 @@ jobs:
         run: |
           echo "QtMsBuild=${{ env.QT_ROOT_DIR }}\\bin" >> $GITHUB_ENV
 
-      - shell: bash
-        run: find /c/Program* -name 'VSIXInstaller.exe'
-          
       - run: |
           curl.exe -o 'qtvstools.vsix' -L 'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/TheQtCompany/vsextensions/QtVisualStudioTools2022/3.3.1.1/vspackage'
           
