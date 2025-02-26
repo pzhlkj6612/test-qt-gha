@@ -20,6 +20,9 @@ jobs:
       - name: Set environment variables
         run: |
           echo "QtMsBuild=${{ env.QT_ROOT_DIR }}\\bin" >> $GITHUB_ENV
+
+      - shell: bash
+        run: find '/c/program files*' -name 'VSIXInstaller.exe'
           
       - run: |
           function Invoke-VSIXInstaller {
