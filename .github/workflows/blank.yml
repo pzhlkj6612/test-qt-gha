@@ -25,20 +25,9 @@ jobs:
         run: find /c/Program* -name 'VSIXInstaller.exe'
           
       - run: |
-          function Invoke-VSIXInstaller {
-            $ErrorActionPreference = 'Stop'
-          
-            $path = vswhere -latest -prerelease -products Microsoft.VisualStudio.Product.Enterprise -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe'
-
-            if (Test-Path $path) {
-              echo "Fire: $path $args"
-              & $path $args
-            }
-          }
-
           curl.exe -o 'qtvstools.vsix' -L 'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/TheQtCompany/vsextensions/QtVisualStudioTools2022/3.3.1.1/vspackage'
           
-          Invoke-VSIXInstaller /q /logFile:qtvstools.log qtvstools.vsix
+          & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VSIXInstaller.exe' /q /logFile:qtvstools.log qtvstools.vsix
 
           Get-Content ${env:TEMP}\qtvstools.log
 
