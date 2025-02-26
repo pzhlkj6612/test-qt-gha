@@ -1,0 +1,26 @@
+name: MSBuild
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '5.15.2'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2019_64'
+        dir: '${{ github.workspace }}/example/'
+        install-deps: 'true'
+        modules: 'qtcore qtwidgets qtgui'
+        cached: 'false'
+        setup-python: 'true'
+        tools-only: 'false'
+
+    - shell: cmd
+      run: set
+      
