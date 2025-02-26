@@ -28,5 +28,5 @@ jobs:
         run: ls -la $QtMsBuild/
 
       - shell: bash
-        run: find $QtMsBuild \( -name '*.targets' -o -name '*.props' \)
+        run: find ${{ env.QT_ROOT_DIR }} \( -name '*.targets' -o -name '*.props' \)
       
