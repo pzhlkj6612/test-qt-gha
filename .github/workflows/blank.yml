@@ -26,6 +26,8 @@ jobs:
           
           & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VSIXInstaller.exe' /q /logFile:qtvstools.log qtvstools.vsix
 
+          Start-Process -Wait -FilePath 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VSIXInstaller.exe' -ArgumentList @('/q', '/logFile:qtvstools.log', 'qtvstools.vsix')
+
           Get-Content ${env:TEMP}\qtvstools.log
 
 #      - shell: bash
