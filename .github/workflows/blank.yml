@@ -40,5 +40,5 @@ jobs:
         run: echo "QtMsBuild = $QtMsBuild"
 
       - shell: bash
-        run: find / \( -name '*.targets' -o -name '*.props' \)
+        run: find /c \( -name '*.targets' -o -name '*.props' \)
       
