@@ -25,7 +25,7 @@ jobs:
           function Invoke-VSIXInstaller {
             $ErrorActionPreference = 'Stop'
           
-            $path = vswhere -latest -prerelease -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe'
+            $path = vswhere -latest -prerelease -products Microsoft.VisualStudio.Product.Enterprise -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe'
 
             if (Test-Path $path) {
               echo "Fire: $path $args"
